@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
             startActivity(intent);
         }
-        startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
     private boolean isNotiPermissionAllowed() {

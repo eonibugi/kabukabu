@@ -1,37 +1,40 @@
 package com.example.kabukabu;
 
-
 import android.app.Notification;
-import android.content.Intent;
-import android.os.Build;
-import android.app.Notification;
-import android.app.Service;
 import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.util.Log;
 
-import androidx.annotation.RequiresApi;
+import java.util.Locale;
 
-@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class KakaoNotificationListener extends NotificationListenerService {
-
+    private TextToSpeech tts;
     @Override
-    public void onNotificationPosted(StatusBarNotification sbn) {
-
+    public void onNotificationPosted(StatusBarNotification sbn){
         final String packageName = sbn.getPackageName();
-        if (!TextUtils.isEmpty(packageName) && packageName.equals("com.kakao.talk")) {
+
+        if(!TextUtils.isEmpty(packageName) && packageName.equals("com.kaako.talk")){
             //알람 확인
             Notification notification = sbn.getNotification();
-
             Bundle extras = notification.extras;
             String title = extras.getString(Notification.EXTRA_TITLE);
-            String text = extras.getString(Notification.EXTRA_TEXT);
-
-            Toast.makeText(this, "왜 안돼 ㅡㅡ", Toast.LENGTH_SHORT).show();
-
+            CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
+            CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT);
+            Log.d("NotificationListener","Title:" + title);
+            Log.d("NotificationListener","text:" + text);
+            Log.d("NotificationListener","subtext:" + subText);
         }
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status!=android.speech.tts.TextToSpeech.ERROR) {
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
     }
+
 }

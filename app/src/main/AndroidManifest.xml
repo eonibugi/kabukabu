@@ -9,6 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kabukabu">
+        <service
+            android:name=".KakaoNotificationListener"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.notifaction.NotificationListnerService"/>
+            </intent-filter>
+        </service>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

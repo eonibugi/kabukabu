@@ -20,22 +20,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         boolean isPermissionAllowed = isNotiPermissionAllowed();
+
         if(!isPermissionAllowed) {
             Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
             startActivity(intent);
         }
 
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status!=android.speech.tts.TextToSpeech.ERROR) {
-                    tts.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
 
 
     }
+
     private boolean isNotiPermissionAllowed() {
         Set<String> notiListenerSet = NotificationManagerCompat.getEnabledListenerPackages(this);
         String myPackageName = getPackageName();

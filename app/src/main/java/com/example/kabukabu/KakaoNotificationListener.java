@@ -42,7 +42,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
                     if(result == TextToSpeech.LANG_NOT_SUPPORTED || result == TextToSpeech.LANG_MISSING_DATA){
                         Log.e("TTS", "This Language is not supported");
                     }else{
-                        tts.setPitch((float) 1.0);
+                        tts.setPitch((float) 1.0); // 목소리 톤 1.0기본
                         tts.setSpeechRate((float) 1.0); // 재생속도
                         tts.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
                     }

@@ -2,11 +2,9 @@ package com.example.kabukabu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-
 import java.util.Locale;
 import java.util.Set;
 

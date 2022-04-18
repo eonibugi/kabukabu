@@ -13,8 +13,8 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/main"
+        android:layout_height="390dp"
+        android:src="@drawable/main"
         tools:ignore="MissingConstraints"/>
 
 

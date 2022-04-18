@@ -20,7 +20,7 @@
         </service>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".IntroActivity"
             android:icon="@mipmap/ic_main"
             android:roundIcon="@mipmap/ic_main_round"
             android:exported="true">
@@ -33,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name = ".MainActivity"/>
     </application>
 
 </manifest>

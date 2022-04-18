@@ -7,7 +7,6 @@ import android.service.notification.StatusBarNotification;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -17,14 +16,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification sbn){
         final String packageName = sbn.getPackageName();
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status!=android.speech.tts.TextToSpeech.ERROR) {
-                    tts.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
+
 
         if(!TextUtils.isEmpty(packageName) && packageName.equals("com.kakao.talk")) {
             //알람 확인
@@ -32,7 +24,9 @@ public class KakaoNotificationListener extends NotificationListenerService {
             Bundle extras = notification.extras;
             String title = extras.getString(Notification.EXTRA_TITLE);
             CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
-            Speech(text);
+            if(title != null || text != null) {
+                Speech(title + "님이 보낸 메시지 입니다" + text);
+            }
             Log.d("NotificationListener","Title:" + title);
             Log.d("NotificationListener","text:" + text);
 
@@ -40,10 +34,32 @@ public class KakaoNotificationListener extends NotificationListenerService {
 
     }
     private void Speech(CharSequence text){
-        tts.setPitch((float) 0.6);
-        tts.setSpeechRate((float) 1.0); // 재생속도
-        tts.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status!=android.speech.tts.TextToSpeech.ERROR) {
+                    int result = tts.setLanguage(Locale.KOREAN); //언어 선택
+                    if(result == TextToSpeech.LANG_NOT_SUPPORTED || result == TextToSpeech.LANG_MISSING_DATA){
+                        Log.e("TTS", "This Language is not supported");
+                    }else{
+                        tts.setPitch((float) 1.0);
+                        tts.setSpeechRate((float) 1.0); // 재생속도
+                        tts.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
+                    }
+                }else{
+                    Log.e("TTS", "Initialization Failed");
+                }
+            }
+        });
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if(tts!=null){
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
 
     }
-
 }

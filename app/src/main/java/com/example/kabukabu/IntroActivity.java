@@ -15,11 +15,8 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro_activity);
         Handler handler = new Handler();
-        boolean isPermissionAllowed = permissionGrantred();
 
-        if(!isPermissionAllowed) {
-            Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-            startActivity(intent);
+
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -28,20 +25,10 @@ public class IntroActivity extends AppCompatActivity {
                     finish();
                 }
             }, 2000); //2초 후 메인
-        }
-
     }
     @Override
     protected void onPause() {
         super.onPause();
         finish();
-    }
-    private boolean permissionGrantred() {
-        Set<String> sets = NotificationManagerCompat.getEnabledListenerPackages(this);
-        if (sets != null && sets.contains(getPackageName())) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

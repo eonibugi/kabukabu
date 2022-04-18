@@ -1,6 +1,7 @@
 package com.example.kabukabu;
 
 import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
@@ -26,9 +27,9 @@ public class KakaoNotificationListener extends NotificationListenerService {
             CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
             if(title != null || text != null) {
                 Speech(title + "님이 보낸 메시지 입니다" + text);
+                sendToActivity(sbn,title,text);
             }
-            Log.d("NotificationListener","Title:" + title);
-            Log.d("NotificationListener","text:" + text);
+
 
         }
 
@@ -60,6 +61,17 @@ public class KakaoNotificationListener extends NotificationListenerService {
             tts.shutdown();
         }
         super.onDestroy();
+
+    }
+    private void sendToActivity(StatusBarNotification sbn, String title, CharSequence text){
+        Intent intent = new Intent(this ,KaKaoDisplayActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                |Intent.FLAG_ACTIVITY_SINGLE_TOP
+                |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("이름",title);
+        intent.putExtra("내용",text);
+
+        this.startActivity(intent);
 
     }
 }

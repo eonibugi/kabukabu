@@ -13,19 +13,18 @@
 
     <ListView android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        />
 
 
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@+id/listView"
         tools:context=".MainActivity">
-
-
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/custom_toolbar"
@@ -33,8 +32,10 @@
             android:layout_height="?attr/actionBarSize"
             android:background="#5A78AF"
             app:title="KABUKABU"
-            app:titleTextColor="@color/white"/>
+            app:titleTextColor="@color/white" />
+
     </RelativeLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

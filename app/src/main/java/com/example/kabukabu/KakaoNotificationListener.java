@@ -11,9 +11,11 @@ import android.util.Log;
 
 import java.util.Locale;
 
+import io.realm.Realm;
+
 public class KakaoNotificationListener extends NotificationListenerService {
     private TextToSpeech tts;
-
+   
     @Override
     public void onNotificationPosted(StatusBarNotification sbn){
         final String packageName = sbn.getPackageName();

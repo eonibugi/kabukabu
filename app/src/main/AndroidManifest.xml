@@ -37,4 +37,5 @@
         <activity android:name = ".KaKaoDisplayActivity"/>
     </application>
 
+
 </manifest>

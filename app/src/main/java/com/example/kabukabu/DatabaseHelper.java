@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //db 업그레이드
 
-        //테이블을 변경하고자할때...
+        //테이블을 변경하고자할때...(버전 업데이트)
     }
 
     @Override
@@ -64,11 +64,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //트랜잭션 시작을 나타내는 메소드
         try{
 
-            String sql = "insert into "+ tableName + "(id, name,age) values('200','장길산',22)";
+            String sql = "insert into "+ tableName + "(id,name ,message) values('1','장길산','안녕하세요')";// values에 KakaoNotificationListener에서 받아온 메시지로 바꿔야 함(?어떻게..ㅠㅠ)
             db.execSQL(sql);
 
 
-            sql = "insert into "+ tableName + "(id, name,age) values('300','자바킹',19)";
+            sql = "insert into "+ tableName + "(id, name, message) values('2','자바킹','안녕하세요')";// 위와 동일하게 바꿔야 함..
             db.execSQL(sql);
             //데이터 삽입
 

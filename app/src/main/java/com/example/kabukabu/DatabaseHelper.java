@@ -64,11 +64,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //트랜잭션 시작을 나타내는 메소드
         try{
 
-            String sql = "insert into "+ tableName + "(id,name ,message) values('1','장길산','안녕하세요')";// values에 KakaoNotificationListener에서 받아온 메시지로 바꿔야 함(?어떻게..ㅠㅠ)
+            String sql = "insert into "+ tableName + "(_id,name ,message) values('1','장길산','안녕하세요')";// values에 KakaoNotificationListener에서 받아온 메시지로 바꿔야 함(?어떻게..ㅠㅠ)
             db.execSQL(sql);
 
 
-            sql = "insert into "+ tableName + "(id, name, message) values('2','자바킹','안녕하세요')";// 위와 동일하게 바꿔야 함..
+            sql = "insert into "+ tableName + "(_id, name, message) values('2','자바킹','안녕하세요')";// 위와 동일하게 바꿔야 함..
             db.execSQL(sql);
             //데이터 삽입
 
@@ -89,7 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void delete(String name)
     {
         database = helper.getWritableDatabase();
-        database.delete("student", "name=?", new String[]{name});
+        database.delete("TimeLine", "name=?", new String[]{name});
     }
 
     public void close() {

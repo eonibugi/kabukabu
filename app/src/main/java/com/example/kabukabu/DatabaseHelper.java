@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 public class DatabaseHelper{
     private final String TAG = "MyDBHandler";
 
+
     SQLiteOpenHelper mHelper = null;
     SQLiteDatabase mDB = null;
 
@@ -32,7 +33,7 @@ public class DatabaseHelper{
     }
 
     //데이터넣기
-    private void insertData(String name, String explains){
+    public void insertData(String name, String explains){
         //트랜잭션 시작을 나타내는 메소드
         try{
             mDB = mHelper.getWritableDatabase();
@@ -55,6 +56,7 @@ public class DatabaseHelper{
         }
 
     }//end insertData
+
     public void delete(String id)
     {
         mDB = mHelper.getWritableDatabase();

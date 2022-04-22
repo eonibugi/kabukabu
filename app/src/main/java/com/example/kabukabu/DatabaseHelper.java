@@ -28,7 +28,7 @@ public class DatabaseHelper{
     public Cursor select()
     {
         mDB = mHelper.getReadableDatabase();
-        Cursor c = mDB.query("TimeLine", null, null, null, null, null, null);
+        Cursor c = mDB.query("TimeLine2", null, null, null, null, null, null);
         return c;
     }
 
@@ -42,7 +42,7 @@ public class DatabaseHelper{
             value.put("name", name);
             value.put("explains", explains);
 
-            mDB.insert("TimeLine", null, value);
+            mDB.insert("TimeLine2", null, value);
 
         }catch(Exception e){
             //SQL문 실행중 오류가 발생하면 예외처리가 되고..
@@ -60,7 +60,7 @@ public class DatabaseHelper{
     public void delete(String id)
     {
         mDB = mHelper.getWritableDatabase();
-        mDB.delete("student", "name=?", new String[]{id});
+        mDB.delete("TimeLine2", "name=?", new String[]{id});
 
     }
 

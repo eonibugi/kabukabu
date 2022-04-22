@@ -14,13 +14,13 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "create table TimeLine (_id integer primary key autoincrement,name text,explains text)";
+        String sql = "create table TimeLine2 (_id integer primary key autoincrement,name text,explains text)";
         sqLiteDatabase.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        String sql="drop table if exists TimeLine";
+        String sql="drop table if exists TimeLine2";
         sqLiteDatabase.execSQL(sql);
         onCreate(sqLiteDatabase);
     }

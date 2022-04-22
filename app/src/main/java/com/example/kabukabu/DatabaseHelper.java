@@ -16,6 +16,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     SQLiteDatabase database;
     String tableName = "TimeLine";
     DatabaseHelper helper;
+    Intent intent;
+    CharSequence explains;
+    String name;
 
 
     //생성자
@@ -70,6 +73,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.beginTransaction(); //sql문을 실행하는 일정구간을 트랜잭션으로 묶어주겠다라는 의미
         //트랜잭션 시작을 나타내는 메소드
         try{
+            name = intent.getStringExtra("이름");
+            explains = intent.getCharSequenceExtra("내용");
 
             String sql = "insert into "+ tableName + "(_id,name ,explains) values('1','장길산','안녕하세요')";// values에 KakaoNotificationListener에서 받아온 메시지로 바꿔야 함(?어떻게..ㅠㅠ)
             db.execSQL(sql);
@@ -78,6 +83,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             sql = "insert into "+ tableName + "(_id, name, explains) values('2','자바킹','안녕하세요')";// 위와 동일하게 바꿔야 함..
             db.execSQL(sql);
             //데이터 삽입
+
+            sql = "insert into "+ tableName + "(name, explains) values(name,explains)";// 위와 동일하게 바꿔야 함..
+            db.execSQL(sql);
 
             db.setTransactionSuccessful(); //트랜잭션으로 묶어준 일정영역의 SQL문들이 모두 성공적으로 끝났을 지정
 

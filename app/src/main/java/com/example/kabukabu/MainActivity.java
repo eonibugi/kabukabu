@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         //SQLite로 가져온 데이터를 listview로 출력하는 코드
         String sql = "select * from TimeLine";
         Cursor c = db.rawQuery(sql, null);
-        String[] strs = new String[]{"name","message"};
+        String[] strs = new String[]{"name","explains"};
         int[] ints = new int[] {R.id.textView1, R.id.textView2};
 
         SimpleCursorAdapter adapter = null;

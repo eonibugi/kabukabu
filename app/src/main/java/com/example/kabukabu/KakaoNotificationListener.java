@@ -73,7 +73,15 @@ public class KakaoNotificationListener extends NotificationListenerService {
         intent.putExtra("이름",title);
         intent.putExtra("내용",text);
 
+        Intent dbIntent = new Intent(this ,DatabaseHelper.class);
+        dbIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                |Intent.FLAG_ACTIVITY_SINGLE_TOP
+                |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        dbIntent.putExtra("이름",title);
+        dbIntent.putExtra("내용",text);
+
         this.startActivity(intent);
+        this.startActivity(dbIntent);
 
     }
 }

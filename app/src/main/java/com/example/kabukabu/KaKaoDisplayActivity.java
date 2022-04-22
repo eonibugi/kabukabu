@@ -13,11 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 public class KaKaoDisplayActivity extends AppCompatActivity {
 
     TextView name, explains;
-    private DatabaseHelper dbHelper;
+    //private DatabaseHelper dbHelper;
 
-    public KaKaoDisplayActivity(DatabaseHelper dbHelper) {
+    /*public KaKaoDisplayActivity(DatabaseHelper dbHelper) {
         this.dbHelper = dbHelper;
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -39,7 +39,7 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
         processCommand(passedIntent);
 
         //getExtra가 processCommand에서 되어서 이쪽으로 넣음
-        try {
+        /*try {
             SQLiteDatabase sdb = dbHelper.getWritableDatabase();
             StringBuffer sql = new StringBuffer();
             sql.append("INSERT INTO TimeLine VALUES(");
@@ -50,7 +50,7 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
 
         } finally {
             dbHelper.close();
-        }
+        }*/
     }
 
     private void processCommand(Intent intent){

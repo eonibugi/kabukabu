@@ -29,7 +29,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
             CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
             if(title != null || text != null) {
                 Speech(title + "님이 보낸 메시지 입니다" + text);
-                sendToActivity(sbn,title,text);
+                sendToActivity(title,text);
             }
 
 
@@ -65,23 +65,15 @@ public class KakaoNotificationListener extends NotificationListenerService {
         super.onDestroy();
 
     }
-    private void sendToActivity(StatusBarNotification sbn, String title, CharSequence text){
-        Intent intent = new Intent(this ,KaKaoDisplayActivity.class);
+    private void sendToActivity(String title, CharSequence text){
+        Intent intent = new Intent(this ,MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 |Intent.FLAG_ACTIVITY_SINGLE_TOP
                 |Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("이름",title);
         intent.putExtra("내용",text);
 
-        Intent dbIntent = new Intent(this ,DatabaseHelper.class);
-        dbIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                |Intent.FLAG_ACTIVITY_SINGLE_TOP
-                |Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        dbIntent.putExtra("이름",title);
-        dbIntent.putExtra("내용",text);
-
         this.startActivity(intent);
-        this.startActivity(dbIntent);
 
     }
 }

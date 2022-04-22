@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
         // TimeLineList라는 database에 TimeLine(DBHelper.java에 있음)이라는 table을 생성
         // 수정가능하게 db를 불러옵니다. db생성함
-        SQLiteDatabase db;
+        /*SQLiteDatabase db;
         DatabaseHelper helper;
         helper = new DatabaseHelper(MainActivity.this, "TimeLineList.db",null,1);
         db = helper.getWritableDatabase();
-        helper.onCreate(db);
+        helper.onCreate(db);*/
 
         boolean isPermissionAllowed = permissionGrantred();
         ListView listView = findViewById(R.id.listView);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        //SQLite로 가져온 데이터를 listview로 출력하는 코드
+        /*//SQLite로 가져온 데이터를 listview로 출력하는 코드
         String sql = "select * from TimeLine";
         Cursor c = db.rawQuery(sql, null);
         String[] strs = new String[]{"name","explains"};
@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
         adapter.addItem(new SingleItem("C", "010-1111-3563"));
         adapter.addItem(new SingleItem("D", "010-5555-4343"));
         adapter.addItem(new SingleItem("E", "010-4567-2587"));
-        adapter.addItem(new SingleItem("F", "010-8945-1235"));*/
+        adapter.addItem(new SingleItem("F", "010-8945-1235"));
 
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter);*/
 
     }
 

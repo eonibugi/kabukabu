@@ -23,9 +23,6 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
       /*  setContentView(R.layout.activity_second);
 
-        name = (TextView) findViewById(R.id.textView1);
-        explains = (TextView) findViewById(R.id.textView2);
-
         Button button = (Button) findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener(){
             @Override

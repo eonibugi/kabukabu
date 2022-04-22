@@ -1,10 +1,11 @@
 package com.example.kabukabu;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 public class KaKaoDisplayActivity extends AppCompatActivity {
 
     TextView name, explains;
+    private DatabaseHelper dbHelper;
+
+    public KaKaoDisplayActivity(DatabaseHelper dbHelper) {
+        this.dbHelper = dbHelper;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -29,8 +35,22 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
             }
         });
 
-        Intent passdlIntent = getIntent();
-        processCommand(passdlIntent);
+        Intent passedIntent = getIntent();
+        processCommand(passedIntent);
+
+        //getExtra가 processCommand에서 되어서 이쪽으로 넣음
+        try {
+            SQLiteDatabase sdb = dbHelper.getWritableDatabase();
+            StringBuffer sql = new StringBuffer();
+            sql.append("INSERT INTO TimeLine VALUES(");
+            sql.append("'"+name+"'");
+            sql.append("'"+explains+"')");
+            sdb.execSQL(sql.toString());
+        } catch (SQLiteException e) {
+
+        } finally {
+            dbHelper.close();
+        }
     }
 
     private void processCommand(Intent intent){

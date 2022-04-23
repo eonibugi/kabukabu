@@ -26,6 +26,7 @@ public class SingleItem {
         this.mobile = mobile;
     }
 
+
     @Override
     public String toString(){
         return "SingleItem{" +

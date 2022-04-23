@@ -2,6 +2,7 @@ package com.example.kabukabu;
     import android.content.Context;
     import android.util.AttributeSet;
     import android.view.LayoutInflater;
+    import android.widget.ImageButton;
     import android.widget.LinearLayout;
     import android.widget.TextView;
     import androidx.annotation.Nullable;
@@ -30,5 +31,6 @@ public class SingleItemView extends LinearLayout{
     public void setMobile(String mobile){
         textView2.setText(mobile);
     }
+    }
 
-}
+

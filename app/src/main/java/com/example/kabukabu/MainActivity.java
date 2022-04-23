@@ -26,6 +26,8 @@ import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
     private TextToSpeech tts;
     DatabaseHelper mHandler = null;
     private String DB_PATH =  "/data/data/com.example.kabukabu/databases/TimeLineList2.db";
@@ -88,7 +90,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.addItem(new SingleItem("F", "010-8945-1235"));*/
 
         //listView.setAdapter(adapter);
+
     }
+
+
 
     void listview(){
         SQLiteDatabase sqLiteDatabase;
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         String sql = "select * from TimeLine2";
         Cursor c = sqLiteDatabase.rawQuery(sql, null);
         String[] strs = new String[]{"name","explains"};
-        int[] ints = new int[] {R.id.textView1, R.id.textView2};
+        int[] ints = new int[] {R.id.textView1, R.id.textView2, R.id.bins};
 
         SimpleCursorAdapter adapter = null;
         adapter = new SimpleCursorAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0);

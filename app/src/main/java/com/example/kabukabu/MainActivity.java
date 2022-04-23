@@ -1,9 +1,10 @@
 package com.example.kabukabu;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
-import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import java.lang.reflect.Array;
 
@@ -39,9 +39,25 @@ public class MainActivity extends AppCompatActivity {
         Button play_game_btn = (Button) findViewById(R.id.delete_all);
         play_game_btn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){
-                delete_all();
-                listview();
+            public void onClick(View v){
+                AlertDialog.Builder check = new AlertDialog.Builder(MainActivity.this);
+                check.setMessage("전체 항목을 삭제 하시겠습니까?");
+                check.setTitle("항목 삭제");
+
+                check.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        delete_all();
+                        listview();
+                    }
+                });
+                check.setNegativeButton("취소",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.dismiss();
+                    }
+                });
+                check.show();
             }
         });
         // TimeLineList라는 database에 TimeLine(DBHelper.java에 있음)이라는 table을 생성
@@ -101,8 +117,16 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listView);
         String sql = "select * from TimeLine2";
         Cursor c = sqLiteDatabase.rawQuery(sql, null);
+
+        while(c.moveToNext()) {
+            int testId1 = c.getColumnIndex("_id");
+            String testId2 = Integer.toString(testId1);
+            Log.d("test", ":" + testId2);
+        } // 받아오는부분 - 확인부탁드려요 ㅠㅠ
+
         String[] strs = new String[]{"name","explains"};
         int[] ints = new int[] {R.id.textView1, R.id.textView2};
+
         SimpleCursorAdapter adapter = null;
         adapter = new SimpleCursorAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0);
 

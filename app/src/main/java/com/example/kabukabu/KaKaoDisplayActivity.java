@@ -1,5 +1,6 @@
 package com.example.kabukabu;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -37,8 +39,8 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
         if( mHandler == null ) {
             mHandler = DatabaseHelper.open(KaKaoDisplayActivity.this, DB_PATH);
         }
-        mAdapter = new SimpleCursorAdapter(getApplicationContext(), android.R.layout.simple_list_item_activated_2,
-                mCursor, new String[]{"name", "explains"}, new int[]{android.R.id.text1, android.R.id.text2}, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        mAdapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.activity_main,
+                mCursor, new String[]{"name", "explains"}, new int[]{R.id.textView1, R.id.textView2}, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
 
         Intent passedIntent = getIntent();
@@ -63,8 +65,6 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
         mCursor = mHandler.select();  // DB 새로 가져오기
         mAdapter.changeCursor(mCursor); // Adapter에 변경된 Cursor 설정하기
         mAdapter.notifyDataSetChanged(); // 업데이트 하기
-
-
     }
     private void processCommand(Intent intent){
         if(intent != null){

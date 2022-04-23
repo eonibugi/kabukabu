@@ -42,14 +42,14 @@ public class DatabaseHelper{
         //트랜잭션 시작을 나타내는 메소드
 
         //try{
-            Log.d(TAG, "Insert Data " );
-            mDB = mHelper.getWritableDatabase();
+        Log.d(TAG, "Insert Data " );
+        mDB = mHelper.getWritableDatabase();
 
-            ContentValues value = new ContentValues();
-            value.put("name", name);
-            value.put("explains", explains);
+        ContentValues value = new ContentValues();
+        value.put("name", name);
+        value.put("explains", explains);
 
-            mDB.insert("TimeLine2", null, value);
+        mDB.insert("TimeLine2", null, value);
 
         /*}catch(Exception e){
             //SQL문 실행중 오류가 발생하면 예외처리가 되고..

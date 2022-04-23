@@ -2,6 +2,7 @@ package com.example.kabukabu;
     import android.content.Context;
     import android.util.AttributeSet;
     import android.view.LayoutInflater;
+    import android.widget.Button;
     import android.widget.ImageButton;
     import android.widget.LinearLayout;
     import android.widget.TextView;
@@ -24,6 +25,7 @@ public class SingleItemView extends LinearLayout{
 
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
+
     }
     public void setName(String name){
         textView1.setText(name);

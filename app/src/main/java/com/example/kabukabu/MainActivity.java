@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import java.lang.reflect.Array;
@@ -27,21 +28,25 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
     private TextToSpeech tts;
     DatabaseHelper mHandler = null;
-    Cursor mCursor = null;
-    SimpleCursorAdapter mAdapter = null;
     private String DB_PATH =  "/data/data/com.example.kabukabu/databases/TimeLineList2.db";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Button play_game_btn = (Button) findViewById(R.id.delete_all);
+        play_game_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                delete_all();
+                listview();
+            }
+        });
         // TimeLineList라는 database에 TimeLine(DBHelper.java에 있음)이라는 table을 생성
         // 수정가능하게 db를 불러옵니다. db생성함
         if( mHandler == null ) {
             mHandler = DatabaseHelper.open(MainActivity.this, DB_PATH);
         }
-        /*SQLiteDatabase sqLiteDatabase;
-        SQLiteOpenHelper helper;
+        /*SQLiteDatabase sqLiteDatabase;        SQLiteOpenHelper helper;
         helper = new MySQLiteOpenHelper(MainActivity.this, "TimeLineList2.db",null,1);
         sqLiteDatabase = helper.getWritableDatabase();
         /*helper.onCreate(sqLiteDatabase);*/
@@ -116,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
             if(title != null & text !=null)
                 insertToDB(title, (String) text);
         }
+    }
+    void delete_all(){
+        mHandler.deleteAll();
     }
 
     @Override

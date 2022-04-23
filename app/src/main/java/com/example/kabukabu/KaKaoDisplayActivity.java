@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -36,6 +37,9 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
         if( mHandler == null ) {
             mHandler = DatabaseHelper.open(KaKaoDisplayActivity.this, DB_PATH);
         }
+        mAdapter = new SimpleCursorAdapter(getApplicationContext(), android.R.layout.simple_list_item_activated_2,
+                mCursor, new String[]{"name", "explains"}, new int[]{android.R.id.text1, android.R.id.text2}, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+
 
         Intent passedIntent = getIntent();
         processCommand(passedIntent);

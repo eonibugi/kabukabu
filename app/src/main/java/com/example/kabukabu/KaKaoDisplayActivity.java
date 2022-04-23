@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
@@ -18,6 +19,8 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
     DatabaseHelper mHandler = null;
     Cursor mCursor = null;
     SimpleCursorAdapter mAdapter = null;
+
+    private String DB_PATH =  "/data/data/com.example.kabukabu/databases/TimeLineList2.db";
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -30,6 +33,9 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
                 finish();
             }
         });*/
+        if( mHandler == null ) {
+            mHandler = DatabaseHelper.open(KaKaoDisplayActivity.this, DB_PATH);
+        }
 
         Intent passedIntent = getIntent();
         processCommand(passedIntent);
@@ -48,9 +54,11 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
             dbHelper.close();
         }*/
     }
-    void insertToDB(String name, String explain){
-        int id; //기본키의 번호로 자동으로 증가되도록 해야함(Databasehelper 클래스에서 하던 여기서 하던 수정 요망)
-        mHandler.insertData(name, explain);
+    void insertToDB(String name, String explains){
+        mHandler.insertData(name, explains);
+        mCursor = mHandler.select();  // DB 새로 가져오기
+        mAdapter.changeCursor(mCursor); // Adapter에 변경된 Cursor 설정하기
+        mAdapter.notifyDataSetChanged(); // 업데이트 하기
 
 
     }
@@ -58,6 +66,7 @@ public class KaKaoDisplayActivity extends AppCompatActivity {
         if(intent != null){
             String title = intent.getStringExtra("이름");
             CharSequence text = intent.getCharSequenceExtra("내용");
+            Log.d("TAG", "KaKaoDisplay"+ title + text);
             insertToDB(title, (String) text);
             //name.setText(title);
             //explains.setText(text);

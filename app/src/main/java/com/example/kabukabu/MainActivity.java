@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         // 수정가능하게 db를 불러옵니다. db생성함
         SQLiteDatabase sqLiteDatabase;
         SQLiteOpenHelper helper;
-        helper = new MySQLiteOpenHelper(MainActivity.this, "TimeLineList2.sqLiteDatabase",null,1);
+        helper = new MySQLiteOpenHelper(MainActivity.this, "TimeLineList2.db",null,1);
         sqLiteDatabase = helper.getWritableDatabase();
         /*helper.onCreate(sqLiteDatabase);*/
 

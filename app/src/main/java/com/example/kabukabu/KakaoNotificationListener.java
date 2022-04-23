@@ -28,6 +28,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
             String title = extras.getString(Notification.EXTRA_TITLE);
             CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
             if(title != null || text != null) {
+                Log.d("TAG", "onNotificationPosted"+ title + text);
                 Speech(title + "님이 보낸 메시지 입니다" + text);
                 sendToActivity(title,text);
             }
@@ -63,6 +64,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
             tts.shutdown();
         }
         super.onDestroy();
+
 
     }
     private void sendToActivity(String title, CharSequence text){

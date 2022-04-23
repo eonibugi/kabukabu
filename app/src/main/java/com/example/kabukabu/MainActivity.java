@@ -1,7 +1,10 @@
 package com.example.kabukabu;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,9 +41,25 @@ public class MainActivity extends AppCompatActivity {
         Button play_game_btn = (Button) findViewById(R.id.delete_all);
         play_game_btn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){
-                delete_all();
-                listview();
+            public void onClick(View v){
+                AlertDialog.Builder check = new AlertDialog.Builder(MainActivity.this);
+                check.setMessage("전체 항목을 삭제 하시겠습니까?");
+                check.setTitle("항목 삭제");
+
+                check.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        delete_all();
+                        listview();
+                    }
+                });
+                check.setNegativeButton("취소",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.dismiss();
+                    }
+                });
+                check.show();
             }
         });
         // TimeLineList라는 database에 TimeLine(DBHelper.java에 있음)이라는 table을 생성

@@ -5,6 +5,7 @@ import androidx.core.app.NotificationManagerCompat;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
 import android.view.View;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         // TimeLineList라는 database에 TimeLine(DBHelper.java에 있음)이라는 table을 생성
         // 수정가능하게 db를 불러옵니다. db생성함
         SQLiteDatabase sqLiteDatabase;
-        MySQLiteOpenHelper helper;
+        SQLiteOpenHelper helper;
         helper = new MySQLiteOpenHelper(MainActivity.this, "TimeLineList2.sqLiteDatabase",null,1);
         sqLiteDatabase = helper.getWritableDatabase();
         /*helper.onCreate(sqLiteDatabase);*/

@@ -15,7 +15,7 @@ import android.text.TextUtils;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper{
-    private final String TAG = "MyDBHandler";
+    private final String TAG = "DatabaseHelper";
 
 
     SQLiteOpenHelper mHelper = null;

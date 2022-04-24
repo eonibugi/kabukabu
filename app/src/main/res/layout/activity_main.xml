@@ -7,9 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
 
-
-
     >
+
 
     <ListView android:id="@+id/listView"
         android:layout_width="match_parent"
@@ -38,12 +37,14 @@
             android:id="@+id/custom_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#5A78AF"
+            android:background="@color/white"
             app:title="KABUKABU"
-            app:titleTextColor="@color/white" />
+
+            app:titleTextColor="#BAD2EE"
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout >

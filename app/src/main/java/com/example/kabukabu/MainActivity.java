@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
@@ -24,16 +25,18 @@ import java.lang.reflect.Array;
 import android.speech.tts.TextToSpeech;
 import android.widget.BaseAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Set;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CustomAdapter.btnListener{
     private TextToSpeech tts;
     DatabaseHelper mHandler = null;
     private String DB_PATH =  "/data/data/com.example.kabukabu/databases/TimeLineList2.db";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,14 +130,18 @@ public class MainActivity extends AppCompatActivity {
         SimpleCursorAdapter adapter = null;
         adapter = new SimpleCursorAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0);
 
+        CustomAdapter adapter2 = null;
+        adapter2 = new CustomAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0,this);
         while(c.moveToNext()) {
             int position = c.getPosition();
-            Cursor cursor = (Cursor) adapter.getItem(position);
+            Cursor cursor = (Cursor) adapter2.getItem(position);
             @SuppressLint("Range") String index = cursor.getString(cursor.getColumnIndex("_id"));
             int id = Integer.parseInt(index);
             Log.d("TAG", "id:" + Integer.toString(id));
-        } // 받아오는부분 - 확인부탁드려요 ㅠㅠ
-        listView.setAdapter(adapter);
+        }
+
+        listView.setAdapter(adapter2);
+
 
     }
     void insertToDB(String name, String explains){
@@ -162,42 +169,31 @@ public class MainActivity extends AppCompatActivity {
         processCommand(intent);
         super.onNewIntent(intent);
     }
-    class SingleAdapter extends BaseAdapter{
-        ArrayList<SingleItem> items = new ArrayList<SingleItem>();
+    //listview button click
+    @Override
+    public void onListBtnClick(Cursor cursor) {
+        SQLiteDatabase sqLiteDatabase;
+        SQLiteOpenHelper helper;
+        helper = new MySQLiteOpenHelper(MainActivity.this, "TimeLineList2.db",null,1);
+        sqLiteDatabase = helper.getWritableDatabase();
+        ListView listView = findViewById(R.id.listView);
+        String sql = "select * from TimeLine2";
+        Cursor c = sqLiteDatabase.rawQuery(sql, null);
 
-        @Override
-        public int getCount(){
-            return items.size();
-        }
-        public void addItem(SingleItem item){
-            items.add(item);
-        }
+        String[] strs = new String[]{"name","explains"};
+        int[] ints = new int[] {R.id.textView1, R.id.textView2};
+        CustomAdapter adapter = null;
+        adapter = new CustomAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0,this);
 
-        @Override
-        public Object getItem(int position){
-            return items.get(position);
-        }
+        int position = cursor.getPosition();
+        Cursor cursor2 = (Cursor) adapter.getItem(position);
+        @SuppressLint("Range") String index = cursor.getString(cursor2.getColumnIndex("_id"));
+        int id = Integer.parseInt(index);
+        Log.d("TAG", "id:" + Integer.toString(id));
+        /*mHandler.delete(index);
+        listView.setAdapter(adapter);*/
 
-        @Override
-        public long getItemId(int position){
-            return position;
-        }
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent){
-            SingleItemView singleItemView = null;
-
-            if(convertView == null){
-                singleItemView = new SingleItemView(getApplicationContext());
-            } else{
-                singleItemView=(SingleItemView) convertView;
-            }
-            SingleItem item = items.get(position);
-            singleItemView.setName(item.getName());
-            singleItemView.setMobile(item.getMobile());
-            return singleItemView;
-
-        }
     }
     private boolean permissionGrantred() {
         Set<String> sets = NotificationManagerCompat.getEnabledListenerPackages(this);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import java.lang.reflect.Array;
 
@@ -36,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button play_game_btn = (Button) findViewById(R.id.delete_all);
-        play_game_btn.setOnClickListener(new View.OnClickListener(){
+        Button Delete_All_btn = (Button) findViewById(R.id.delete_all);
+        Delete_All_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 AlertDialog.Builder check = new AlertDialog.Builder(MainActivity.this);
@@ -118,19 +120,22 @@ public class MainActivity extends AppCompatActivity {
         String sql = "select * from TimeLine2";
         Cursor c = sqLiteDatabase.rawQuery(sql, null);
 
-        while(c.moveToNext()) {
-            int testId1 = c.getColumnIndex("_id");
-            String testId2 = Integer.toString(testId1);
-            Log.d("test", ":" + testId2);
-        } // 받아오는부분 - 확인부탁드려요 ㅠㅠ
+
 
         String[] strs = new String[]{"name","explains"};
         int[] ints = new int[] {R.id.textView1, R.id.textView2};
-
         SimpleCursorAdapter adapter = null;
         adapter = new SimpleCursorAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0);
 
+        while(c.moveToNext()) {
+            int position = c.getPosition();
+            Cursor cursor = (Cursor) adapter.getItem(position);
+            @SuppressLint("Range") String index = cursor.getString(cursor.getColumnIndex("_id"));
+            int id = Integer.parseInt(index);
+            Log.d("TAG", "id:" + Integer.toString(id));
+        } // 받아오는부분 - 확인부탁드려요 ㅠㅠ
         listView.setAdapter(adapter);
+
     }
     void insertToDB(String name, String explains){
         mHandler.insertData(name, explains);
@@ -193,22 +198,6 @@ public class MainActivity extends AppCompatActivity {
             return singleItemView;
 
         }
-    }
-
-    private boolean isNotiPermissionAllowed() {
-        Set<String> notiListenerSet = NotificationManagerCompat.getEnabledListenerPackages(this);
-        String myPackageName = getPackageName();
-
-        for(String packageName : notiListenerSet) {
-            if(packageName == null) {
-                continue;
-            }
-            if(packageName.equals(myPackageName)) {
-                return true;
-            }
-        }
-
-        return false;
     }
     private boolean permissionGrantred() {
         Set<String> sets = NotificationManagerCompat.getEnabledListenerPackages(this);

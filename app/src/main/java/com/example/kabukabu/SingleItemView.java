@@ -2,11 +2,13 @@ package com.example.kabukabu;
     import android.content.Context;
     import android.util.AttributeSet;
     import android.view.LayoutInflater;
+    import android.view.View;
     import android.widget.Button;
     import android.widget.ImageButton;
     import android.widget.LinearLayout;
     import android.widget.TextView;
     import androidx.annotation.Nullable;
+    import android.util.Log;
 
 public class SingleItemView extends LinearLayout{
     TextView textView1, textView2;
@@ -15,6 +17,7 @@ public class SingleItemView extends LinearLayout{
         super(context);
         init(context);
     }
+
 
     public SingleItemView(Context context, @Nullable AttributeSet attrs){
         super(context, attrs);

@@ -38,7 +38,9 @@
             android:textSize="24sp" />
 
         <ImageButton
-            android:id="@+id/bins"
+            android:id="@+id/delete_id"
+            android:focusable="false"
+            android:clickable="false"
             android:layout_width="44dp"
             android:layout_height="49dp"
             android:src="@drawable/bin" />

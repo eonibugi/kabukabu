@@ -3,6 +3,7 @@ package com.example.kabukabu;
 public class SingleItem {
     String name;
     String mobile;
+    int num;
 
     //생성
     public SingleItem(String name, String mobile){

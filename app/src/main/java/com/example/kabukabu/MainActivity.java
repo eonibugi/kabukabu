@@ -132,13 +132,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
 
         CustomAdapter adapter2 = null;
         adapter2 = new CustomAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0,this);
-        while(c.moveToNext()) {
-            int position = c.getPosition();
-            Cursor cursor = (Cursor) adapter2.getItem(position);
-            @SuppressLint("Range") String index = cursor.getString(cursor.getColumnIndex("_id"));
-            int id = Integer.parseInt(index);
-            Log.d("TAG", "id:" + Integer.toString(id));
-        }
 
         listView.setAdapter(adapter2);
 
@@ -171,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
     }
     //listview button click
     @Override
-    public void onListBtnClick(Cursor cursor) {
+    public void onListBtnClick(int position) {
         SQLiteDatabase sqLiteDatabase;
         SQLiteOpenHelper helper;
         helper = new MySQLiteOpenHelper(MainActivity.this, "TimeLineList2.db",null,1);
@@ -185,14 +178,13 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         CustomAdapter adapter = null;
         adapter = new CustomAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0,this);
 
-        int position = cursor.getPosition();
+        //int position = cursor.getPosition();
         Cursor cursor2 = (Cursor) adapter.getItem(position);
-        @SuppressLint("Range") String index = cursor.getString(cursor2.getColumnIndex("_id"));
+        @SuppressLint("Range") String index = cursor2.getString(cursor2.getColumnIndex("_id"));
         int id = Integer.parseInt(index);
-        Log.d("TAG", "id:" + Integer.toString(id));
-        /*mHandler.delete(index);
-        listView.setAdapter(adapter);*/
-
+        Log.d("TAG", "id:" + Integer.toString(id)+"position" + Integer.toString(position));
+        mHandler.delete(index);
+        listview();
 
     }
     private boolean permissionGrantred() {

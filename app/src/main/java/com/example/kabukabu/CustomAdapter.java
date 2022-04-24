@@ -11,7 +11,7 @@ import android.widget.SimpleCursorAdapter;
 
 public class CustomAdapter extends SimpleCursorAdapter implements View.OnClickListener{
 
-
+    int position = 0;
     private Context mContext;
     private Context appContext;
     private int layout;
@@ -19,7 +19,7 @@ public class CustomAdapter extends SimpleCursorAdapter implements View.OnClickLi
     private final LayoutInflater inflater;
 
     public interface btnListener {
-        void onListBtnClick(Cursor cursor) ;
+        void onListBtnClick(int cursor) ;
     }
     private btnListener btnListener;
 
@@ -35,7 +35,7 @@ public class CustomAdapter extends SimpleCursorAdapter implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (this.btnListener != null) {
-            this.btnListener.onListBtnClick((Cursor)v.getTag());
+            this.btnListener.onListBtnClick((int)v.getTag());
         }
     }
 
@@ -48,8 +48,10 @@ public class CustomAdapter extends SimpleCursorAdapter implements View.OnClickLi
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         super.bindView(view, context, cursor);
+
         Button btn = (Button) view.findViewById(R.id.delete_id);
-        btn.setTag(cursor);
+        btn.setTag(position);
         btn.setOnClickListener(this);
+        position++;
     }
 }

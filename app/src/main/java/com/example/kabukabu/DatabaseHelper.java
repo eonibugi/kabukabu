@@ -67,7 +67,7 @@ public class DatabaseHelper{
     public void delete(String id)
     {
         mDB = mHelper.getWritableDatabase();
-        mDB.delete("TimeLine2", "id=?", new String[]{id});
+        mDB.delete("TimeLine2", "_id=?", new String[]{id});
 
     }
 

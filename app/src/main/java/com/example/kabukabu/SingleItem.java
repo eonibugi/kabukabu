@@ -1,9 +1,10 @@
 package com.example.kabukabu;
 
+import android.graphics.drawable.Drawable;
+
 public class SingleItem {
     String name;
     String mobile;
-    int num;
 
     //생성
     public SingleItem(String name, String mobile){

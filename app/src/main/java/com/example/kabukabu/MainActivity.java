@@ -102,16 +102,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         Intent passedIntent = getIntent();
         processCommand(passedIntent);
 
-        /* SingleAdapter adapter = new SingleAdapter();
-        adapter.addItem(new SingleItem("N", "010-8605-7344"));
-        adapter.addItem(new SingleItem("A", "010-0000-7344"));
-        adapter.addItem(new SingleItem("Enyoung", "010-1234-7344"));
-        adapter.addItem(new SingleItem("C", "010-1111-3563"));
-        adapter.addItem(new SingleItem("D", "010-5555-4343"));
-        adapter.addItem(new SingleItem("E", "010-4567-2587"));
-        adapter.addItem(new SingleItem("F", "010-8945-1235"));*/
-
-        //listView.setAdapter(adapter);
     }
 
     void listview(){
@@ -134,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         adapter2 = new CustomAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0,this);
 
         listView.setAdapter(adapter2);
-
 
     }
     void insertToDB(String name, String explains){
@@ -195,5 +184,4 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
             return false;
         }
     }
-
 }

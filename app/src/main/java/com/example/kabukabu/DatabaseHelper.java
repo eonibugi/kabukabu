@@ -76,6 +76,7 @@ public class DatabaseHelper{
         mDB = mHelper.getWritableDatabase();
         mDB.delete("TimeLine2", "", null);
     }
+
     public void close() {
         mHelper.close();
     }

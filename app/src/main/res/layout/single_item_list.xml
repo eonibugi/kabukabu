@@ -41,7 +41,8 @@
             android:id="@+id/delete_id"
             android:layout_width="44dp"
             android:layout_height="49dp"
-            android:src="@drawable/bin" />
+            android:src="@drawable/bin"
+            android:background="@mipmap/bin"/>
     </LinearLayout>
 
 

@@ -16,8 +16,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textView1"
@@ -32,23 +34,27 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:layout_marginTop="8dp"
             android:text="내용"
             android:textColor="@android:color/black"
             android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/delete_id"
-            android:layout_width="44dp"
-            android:layout_height="49dp"
-            android:src="@drawable/bin"
-            android:background="@mipmap/bin"/>
-
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="match_parent"
+            android:layout_width="49dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="시간" />
+
+        <Button
+            android:id="@+id/delete_id"
+            android:layout_width="39dp"
+            android:layout_height="42dp"
+            android:layout_gravity="right"
+            android:background="@mipmap/bin"
+            android:src="@drawable/bin" />
+
     </LinearLayout>
 
 

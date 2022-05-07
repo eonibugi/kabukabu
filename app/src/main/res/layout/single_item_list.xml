@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="49dp"
+            android:layout_width="267dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="시간" />

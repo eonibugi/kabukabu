@@ -10,10 +10,13 @@ import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -23,7 +26,10 @@ import io.realm.Realm;
 
 public class KakaoNotificationListener extends NotificationListenerService {
     private TextToSpeech tts;
-   // String time;
+    int checkNumber = 0;
+    // String[] stringList1 = new String[100];
+    ArrayList<String> stringList = new ArrayList<String>(); // ArrayList 선언
+    // String time;
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn){
@@ -50,8 +56,16 @@ public class KakaoNotificationListener extends NotificationListenerService {
             CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
             if(title != null || text != null) {
                 Log.d("TAG", "onNotificationPosted"+ title + text);
-                Speech(title + "님이 보낸 메시지 입니다" + text);
-                sendToActivity(title,text, times);
+                //stringList = title.split(" ");
+                Speech(title + "님이 보낸 메시지 입니다" + text); // 처음 메시지 왔을 때 읽어줌
+                if(!stringList.contains((title))){ // 메시지를 보낸 사람이 ArrayList에 없으면?
+                    stringList.clear(); //  ArrayList를 clear함
+                    Speech(title + "님이 보낸 메시지 입니다" + text); // 새로 보낸 사람의 이름과 메시지를 읽어줌
+                } else {
+                    Speech(text); // 전에 보낸 사람은 메시지만 읽어줌
+                }
+                stringList.add(title); // 보낸 사람의 이름을 ArrayList에 추가함
+                sendToActivity(title, text, times);
             }
         }
     }

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import io.realm.Realm;
@@ -30,6 +31,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
     // String[] stringList1 = new String[100];
     ArrayList<String> stringList = new ArrayList<String>(); // ArrayList 선언
     // String time;
+    HashMap<String, String> mMap = new HashMap<>(); // 중복읽기 방지
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn){
@@ -80,6 +82,8 @@ public class KakaoNotificationListener extends NotificationListenerService {
                     }else{
                         tts.setPitch((float) 1.0); // 목소리 톤 1.0기본
                         tts.setSpeechRate((float) 1.0); // 재생속도
+                        //TTS 앱 개발시에는 messageID 변경 해주고, onDone시에 서비스 Stop, mMap.clear
+                        mMap.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "messageID");
                         tts.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
                     }
                 }else{
@@ -94,6 +98,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
         if(tts!=null){
             tts.stop();
             tts.shutdown();
+            mMap.clear();
         }
         super.onDestroy();
 

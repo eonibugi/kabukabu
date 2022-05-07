@@ -14,7 +14,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "create table TimeLine2 (_id integer primary key autoincrement,name text,explains text)";
+        String sql = "create table TimeLine2 (_id integer primary key autoincrement,name text,explains text,times text)";
         sqLiteDatabase.execSQL(sql);
     }
 

@@ -115,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
 
 
 
-        String[] strs = new String[]{"name","explains"};
-        int[] ints = new int[] {R.id.textView1, R.id.textView2};
+        String[] strs = new String[]{"name","explains","times"};
+        int[] ints = new int[] {R.id.textView1, R.id.textView2, R.id.textView3};
         SimpleCursorAdapter adapter = null;
         adapter = new SimpleCursorAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0);
 
@@ -126,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         listView.setAdapter(adapter2);
 
     }
-    void insertToDB(String name, String explains){
-        mHandler.insertData(name, explains);
+    void insertToDB(String name, String explains, String time){
+        mHandler.insertData(name, explains, time);
         /*mCursor = mHandler.select();  // DB 새로 가져오기
         mAdapter.changeCursor(mCursor); // Adapter에 변경된 Cursor 설정하기
         mAdapter.notifyDataSetChanged(); // 업데이트 하기*/
@@ -138,8 +138,9 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         if(intent != null){
             String title = intent.getStringExtra("이름");
             CharSequence text = intent.getCharSequenceExtra("내용");
-            if(title != null & text !=null)
-                insertToDB(title, (String) text);
+            String time = intent.getStringExtra("시간");
+            if(title != null & text !=null & time != null)
+                insertToDB(title, (String) text, time);
         }
     }
     void delete_all(){
@@ -162,8 +163,8 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         String sql = "select * from TimeLine2";
         Cursor c = sqLiteDatabase.rawQuery(sql, null);
 
-        String[] strs = new String[]{"name","explains"};
-        int[] ints = new int[] {R.id.textView1, R.id.textView2};
+        String[] strs = new String[]{"name","explains", "times"};
+        int[] ints = new int[] {R.id.textView1, R.id.textView2, R.id.textView3};
         CustomAdapter adapter = null;
         adapter = new CustomAdapter(listView.getContext(), R.layout.single_item_list, c, strs, ints,0,this);
 

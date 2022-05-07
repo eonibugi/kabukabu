@@ -28,7 +28,6 @@ public class SingleItemView extends LinearLayout{
 
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
-
     }
     public void setName(String name){
         textView1.setText(name);

@@ -43,6 +43,12 @@
             android:layout_height="49dp"
             android:src="@drawable/bin"
             android:background="@mipmap/bin"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="시간" />
     </LinearLayout>
 
 

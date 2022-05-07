@@ -38,7 +38,7 @@ public class DatabaseHelper{
     }
 
     //데이터넣기
-    public void insertData(String name, String explains){
+    public void insertData(String name, String explains, String times){
         //트랜잭션 시작을 나타내는 메소드
 
         //try{
@@ -48,6 +48,7 @@ public class DatabaseHelper{
         ContentValues value = new ContentValues();
         value.put("name", name);
         value.put("explains", explains);
+        value.put("times", times);
 
         mDB.insert("TimeLine2", null, value);
 

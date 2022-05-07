@@ -1,5 +1,6 @@
 package com.example.kabukabu;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,22 +10,37 @@ import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 import io.realm.Realm;
 
+
 public class KakaoNotificationListener extends NotificationListenerService {
     private TextToSpeech tts;
+   // String time;
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn){
         final String packageName = sbn.getPackageName();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 텍스트 형태의 시간 출력
         Date date = new Date();
-        String times = simpleDateFormat.format(date);
+        String times = simpleDateFormat.format(date); // 현재 시간 출력
+
+       /* try { 몇 초 전, 몇 분 전 띄우기
+            Date date2 = format.parse(times); String 형태의 현재 시간을 Date 형태로 바꾸어 줌 (클래스 TimeCompare이 Date형태로 계산하기 때문에)
+            time = TimeCompare.calculateTime(date2); // 클래스 TimeCompare을 불러와 계산한 뒤 다시 String 형으로 변환시킴
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } */
+        // 오류는 안나는데 시간 갱신이 안돼요..
 
         if(!TextUtils.isEmpty(packageName) && packageName.equals("com.kakao.talk")) {
             //알람 확인
@@ -35,12 +51,9 @@ public class KakaoNotificationListener extends NotificationListenerService {
             if(title != null || text != null) {
                 Log.d("TAG", "onNotificationPosted"+ title + text);
                 Speech(title + "님이 보낸 메시지 입니다" + text);
-                sendToActivity(title,text,times);
+                sendToActivity(title,text, times);
             }
-
-
         }
-
     }
     private void Speech(CharSequence text){
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
@@ -82,6 +95,5 @@ public class KakaoNotificationListener extends NotificationListenerService {
         intent.putExtra("시간",times);
 
         this.startActivity(intent);
-
     }
 }

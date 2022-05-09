@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kabukabu">
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
 
         <service
             android:name=".KakaoNotificationListener"
@@ -21,21 +24,17 @@
 
         <activity
             android:name=".IntroActivity"
+            android:exported="true"
             android:icon="@mipmap/ic_main"
-            android:roundIcon="@mipmap/ic_main_round"
-            android:exported="true">
-
-
+            android:roundIcon="@mipmap/ic_main_round">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name = ".MainActivity"/>
-        <activity android:name = ".KaKaoDisplayActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".KaKaoDisplayActivity" />
     </application>
-
 
 </manifest>

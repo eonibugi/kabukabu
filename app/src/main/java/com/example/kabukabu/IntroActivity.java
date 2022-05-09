@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationManagerCompat;
-
-import java.util.Set;
 
 public class IntroActivity extends AppCompatActivity {
     @Override

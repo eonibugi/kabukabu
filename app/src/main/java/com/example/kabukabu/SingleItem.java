@@ -2,6 +2,11 @@ package com.example.kabukabu;
 
 import android.graphics.drawable.Drawable;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 public class SingleItem {
     String name;
     String mobile;
@@ -15,7 +20,6 @@ public class SingleItem {
     public String getName(){
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -23,7 +27,6 @@ public class SingleItem {
     public String getMobile(){
         return mobile;
     }
-
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }

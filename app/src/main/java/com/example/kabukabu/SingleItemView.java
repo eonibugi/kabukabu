@@ -10,6 +10,9 @@ package com.example.kabukabu;
     import androidx.annotation.Nullable;
     import android.util.Log;
 
+    import java.sql.Date;
+    import java.sql.Timestamp;
+
 public class SingleItemView extends LinearLayout{
     TextView textView1, textView2;
 
@@ -32,9 +35,8 @@ public class SingleItemView extends LinearLayout{
     public void setName(String name){
         textView1.setText(name);
     }
-    public void setMobile(String mobile){
-        textView2.setText(mobile);
-    }
+    public void setMobile(String mobile){ textView2.setText(mobile); }
+
     }
 
 

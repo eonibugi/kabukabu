@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button Delete_All_btn = (Button) findViewById(R.id.delete_all);
-        // Timer timeTimer = new Timer();
 
         Delete_All_btn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -60,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
                     public void onClick(DialogInterface dialog, int i) {
                         delete_all();
                         listview();
-                        // timeTimer.schedule(timeTimerTask, 0, 1000);
                     }
                 });
                 check.setNegativeButton("취소",new DialogInterface.OnClickListener(){
@@ -133,21 +131,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         listView.setAdapter(adapter2);
 
     }
-    TimerTask timeTimerTask = new TimerTask(){
-        public void run() {
-            Update();
-        }
-    };
-
-    protected void Update() {
-        Runnable updater = new Runnable() {
-            public void run() {
-
-            }
-        };
-        Handler handler = null;
-        handler.post(updater);
-    };
 
     void insertToDB(String name, String explains, String time){
         mHandler.insertData(name, explains, time);

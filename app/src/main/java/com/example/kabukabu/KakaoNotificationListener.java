@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.speech.tts.TextToSpeech;
@@ -21,6 +22,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.realm.Realm;
 
@@ -38,9 +41,25 @@ public class KakaoNotificationListener extends NotificationListenerService {
     public void onNotificationPosted(StatusBarNotification sbn){
         final String packageName = sbn.getPackageName();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        // java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 텍스트 형태의 시간 출력
+        //java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 텍스트 형태의 시간 출력
         Date date = new Date();
         String times = simpleDateFormat.format(date); // 현재 시간 출력
+
+        /*Timer timeTimer = new Timer();
+        TimerTask task = new TimerTask() {
+            public void run() {
+                try {
+                    //몇 초 전, 몇 분 전 띄우기
+                    Date date2 = format.parse(times);
+                    // String 형태의 현재 시간을 Date 형태로 바꾸어 줌 (클래스 TimeCompare이 Date형태로 계산하기 때문에)
+                    String time = TimeCompare.calculateTime(date2); // 클래스 TimeCompare을 불러와 계산한 뒤 다시 String 형으로 변환시킴
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        };timeTimer.schedule(task, 1000, 29000);*/
+
 
        /* try { 몇 초 전, 몇 분 전 띄우기
             Date date2 = format.parse(times); String 형태의 현재 시간을 Date 형태로 바꾸어 줌 (클래스 TimeCompare이 Date형태로 계산하기 때문에)
@@ -81,17 +100,16 @@ public class KakaoNotificationListener extends NotificationListenerService {
                     if(result == TextToSpeech.LANG_NOT_SUPPORTED || result == TextToSpeech.LANG_MISSING_DATA){
                         Log.e("TTS", "This Language is not supported");
                     }else{
+                        mAudio.requestAudioFocus(); //요청
                         tts.setPitch((float) 1.0); // 목소리 톤 1.0기본
                         tts.setSpeechRate((float) 1.0); // 재생속도
                         //TTS 앱 개발시에는 messageID 변경 해주고, onDone시에 서비스 Stop, mMap.clear
                         mMap.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "messageID");
-                        mAudio.requestAudioFocus(); //요청
                         tts.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
-                        mAudio.abandonAudioFocus(); //반납
                     }
                 }else{
                     Log.e("TTS", "Initialization Failed");
-                }
+                }mAudio.abandonAudioFocus(); //반납
             }
         });
     }

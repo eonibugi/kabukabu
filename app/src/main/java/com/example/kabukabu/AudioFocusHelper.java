@@ -20,9 +20,9 @@ public class AudioFocusHelper implements AudioManager.OnAudioFocusChangeListener
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             AudioAttributes mAudioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
                     .build();
-            audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+            audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
                     .setAudioAttributes(mAudioAttributes)
                     .setAcceptsDelayedFocusGain(true)
                     .setOnAudioFocusChangeListener(this)
@@ -36,7 +36,7 @@ public class AudioFocusHelper implements AudioManager.OnAudioFocusChangeListener
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             audioManager.requestAudioFocus(audioFocusRequest);
         } else {
-            audioManager.requestAudioFocus(this, AudioManager.USE_DEFAULT_STREAM_TYPE, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+            audioManager.requestAudioFocus(this, AudioManager.USE_DEFAULT_STREAM_TYPE, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
         }
     }
     public void abandonAudioFocus() {

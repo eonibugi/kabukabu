@@ -32,6 +32,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
     ArrayList<String> stringList = new ArrayList<String>(); // ArrayList 선언
     // String time;
     HashMap<String, String> mMap = new HashMap<>(); // 중복읽기 방지
+    AudioFocusHelper mAudio;
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn){
@@ -84,7 +85,9 @@ public class KakaoNotificationListener extends NotificationListenerService {
                         tts.setSpeechRate((float) 1.0); // 재생속도
                         //TTS 앱 개발시에는 messageID 변경 해주고, onDone시에 서비스 Stop, mMap.clear
                         mMap.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "messageID");
+                        mAudio.requestAudioFocus(); //요청
                         tts.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
+                        mAudio.abandonAudioFocus(); //반납
                     }
                 }else{
                     Log.e("TTS", "Initialization Failed");

@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +29,11 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MainActivity extends AppCompatActivity implements CustomAdapter.btnListener{
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button Delete_All_btn = (Button) findViewById(R.id.delete_all);
+        // Timer timeTimer = new Timer();
+
         Delete_All_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -54,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
                     public void onClick(DialogInterface dialog, int i) {
                         delete_all();
                         listview();
+                        // timeTimer.schedule(timeTimerTask, 0, 1000);
                     }
                 });
                 check.setNegativeButton("취소",new DialogInterface.OnClickListener(){
@@ -126,6 +133,22 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         listView.setAdapter(adapter2);
 
     }
+    TimerTask timeTimerTask = new TimerTask(){
+        public void run() {
+            Update();
+        }
+    };
+
+    protected void Update() {
+        Runnable updater = new Runnable() {
+            public void run() {
+
+            }
+        };
+        Handler handler = null;
+        handler.post(updater);
+    };
+
     void insertToDB(String name, String explains, String time){
         mHandler.insertData(name, explains, time);
         /*mCursor = mHandler.select();  // DB 새로 가져오기

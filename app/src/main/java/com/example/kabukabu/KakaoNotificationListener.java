@@ -25,14 +25,13 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import io.realm.Realm;
-
 
 public class KakaoNotificationListener extends NotificationListenerService {
     private TextToSpeech tts;
     int checkNumber = 0;
     // String[] stringList1 = new String[100];
     ArrayList<String> stringList = new ArrayList<String>(); // ArrayList 선언
+    String duplicate_title;
     // String time;
     HashMap<String, String> mMap = new HashMap<>(); // 중복읽기 방지
     AudioFocusHelper mAudio;
@@ -79,8 +78,10 @@ public class KakaoNotificationListener extends NotificationListenerService {
             if(title != null || text != null) {
                 Log.d("TAG", "onNotificationPosted"+ title + text);
                 //stringList = title.split(" ");
-                Speech(title + "님이 보낸 메시지 입니다" + text); // 처음 메시지 왔을 때 읽어줌
-                if(!stringList.contains((title))){ // 메시지를 보낸 사람이 ArrayList에 없으면?
+                if(stringList.isEmpty()){
+                    Speech(title + "님이 보낸 메시지 입니다" + text); // 처음 메시지 왔을 때 읽어줌
+                }
+                else if(!stringList.contains((title))){ // 메시지를 보낸 사람이 ArrayList에 없으면?
                     stringList.clear(); //  ArrayList를 clear함
                     Speech(title + "님이 보낸 메시지 입니다" + text); // 새로 보낸 사람의 이름과 메시지를 읽어줌
                 } else {
@@ -100,16 +101,16 @@ public class KakaoNotificationListener extends NotificationListenerService {
                     if(result == TextToSpeech.LANG_NOT_SUPPORTED || result == TextToSpeech.LANG_MISSING_DATA){
                         Log.e("TTS", "This Language is not supported");
                     }else{
-                        mAudio.requestAudioFocus(); //요청
+                        //mAudio.requestAudioFocus(); //요청
                         tts.setPitch((float) 1.0); // 목소리 톤 1.0기본
                         tts.setSpeechRate((float) 1.0); // 재생속도
                         //TTS 앱 개발시에는 messageID 변경 해주고, onDone시에 서비스 Stop, mMap.clear
-                        mMap.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "messageID");
+                        //mMap.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "messageID");
                         tts.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
                     }
                 }else{
                     Log.e("TTS", "Initialization Failed");
-                }mAudio.abandonAudioFocus(); //반납
+                }//mAudio.abandonAudioFocus(); //반납
             }
         });
     }

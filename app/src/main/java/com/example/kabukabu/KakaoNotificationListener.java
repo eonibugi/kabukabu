@@ -79,16 +79,18 @@ public class KakaoNotificationListener extends NotificationListenerService {
                 Log.d("TAG", "onNotificationPosted"+ title + text);
                 //stringList = title.split(" ");
                 if(stringList.isEmpty()){
+                    stringList.add(title);
                     Speech(title + "님이 보낸 메시지 입니다" + text); // 처음 메시지 왔을 때 읽어줌
                 }
                 else if(!stringList.contains((title))){ // 메시지를 보낸 사람이 ArrayList에 없으면?
                     stringList.clear(); //  ArrayList를 clear함
                     stringList.add(title);
                     Speech(title + "님이 보낸 메시지 입니다" + text); // 새로 보낸 사람의 이름과 메시지를 읽어줌
-                } else {
+                } else if(stringList.contains((title))) {
                     Speech(text); // 전에 보낸 사람은 메시지만 읽어줌
                 }
                  // 보낸 사람의 이름을 ArrayList에 추가함
+
                 sendToActivity(title, text, times);
             }
         }

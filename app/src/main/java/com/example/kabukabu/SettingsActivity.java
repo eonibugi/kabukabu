@@ -19,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Button Timeline_btn = (Button) findViewById(R.id.timeline_button);
+        ImageButton Timeline_btn = (ImageButton)findViewById(R.id.timeline_button);
         Timeline_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

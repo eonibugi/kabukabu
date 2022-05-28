@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         Intent passedIntent = getIntent();
         processCommand(passedIntent);
 
-        Button Setting_btn = (Button) findViewById(R.id.setting_button);
+        ImageButton Setting_btn = (ImageButton) findViewById(R.id.setting_button);
         Setting_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

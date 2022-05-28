@@ -6,24 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="234dp"
-        android:layout_height="237dp"
-        app:srcCompat="@drawable/anibugi"
-        tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="119dp"
-        tools:ignore="MissingConstraints" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".SettingsActivity">
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="139dp"
-        android:layout_height="62dp"
-        android:text="ON/OFF"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="366dp"
-        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/custom_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:textStyle="bold"
+            app:title="KABUKABU"
+            app:titleTextColor="#BAD2EE"
+            tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:id="@+id/timeline_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="21dp"
+                    android:text="Time line"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="306dp"
+                    tools:layout_editor_absoluteY="0dp" />
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView2"-->
+<!--                    android:layout_width="249dp"-->
+<!--                    android:layout_height="252dp"-->
+<!--                    app:srcCompat="@drawable/anibugi"-->
+<!--                    tools:ignore="MissingConstraints"-->
+<!--                    tools:layout_editor_absoluteX="88dp"-->
+<!--                    tools:layout_editor_absoluteY="119dp" />-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/switch1"-->
+<!--            android:layout_width="139dp"-->
+<!--            android:layout_height="62dp"-->
+<!--            android:text="ON/OFF"-->
+<!--            android:textSize="23sp"-->
+<!--            android:textStyle="bold"-->
+<!--            tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml"-->
+<!--            tools:layout_editor_absoluteX="136dp"-->
+<!--            tools:layout_editor_absoluteY="366dp" />-->
+
+        </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

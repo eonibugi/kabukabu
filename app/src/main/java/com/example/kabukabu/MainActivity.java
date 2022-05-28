@@ -2,6 +2,7 @@ package com.example.kabukabu;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationManagerCompat;
 
 import android.annotation.SuppressLint;
@@ -14,6 +15,9 @@ import android.os.Bundle;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -35,7 +39,6 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class MainActivity extends AppCompatActivity implements CustomAdapter.btnListener{
     private TextToSpeech tts;
     DatabaseHelper mHandler = null;
@@ -45,8 +48,8 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button Delete_All_btn = (Button) findViewById(R.id.delete_all);
 
+        Button Delete_All_btn = (Button) findViewById(R.id.delete_all);
         Delete_All_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -107,7 +110,24 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.btn
         Intent passedIntent = getIntent();
         processCommand(passedIntent);
 
+        Button Setting_btn = (Button) findViewById(R.id.setting_button);
+        Setting_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
+    @Override
+    public  boolean onCreateOptionMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
 
     void listview(){
         SQLiteDatabase sqLiteDatabase;

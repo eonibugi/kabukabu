@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-
     >
 
     <ListView android:id="@+id/listView"
@@ -19,17 +18,24 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="@+id/listView"
         tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/setting_button"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:text="설정" />
 
         <Button
             android:id="@+id/delete_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="0dp"
+            android:layout_marginEnd="92dp"
             android:text="전체 삭제" />
 
         <androidx.appcompat.widget.Toolbar
@@ -37,11 +43,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
-            app:title="KABUKABU"
-
-            app:titleTextColor="#BAD2EE"
             android:textStyle="bold"
-            />
+
+            app:title="KABUKABU"
+            app:titleTextColor="#BAD2EE" />
 
     </RelativeLayout>
 

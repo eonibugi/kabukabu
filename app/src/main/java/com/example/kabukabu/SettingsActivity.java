@@ -10,9 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    Switch swichView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

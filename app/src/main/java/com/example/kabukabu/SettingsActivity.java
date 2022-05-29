@@ -47,7 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked)
                    pm.setComponentEnabledSetting(
-                            notificationListenerService,
+                            notificationListenerService, //off
                             PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                             PackageManager.DONT_KILL_APP);
                 else

@@ -10,6 +10,7 @@ import android.service.notification.StatusBarNotification;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Button;
 
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -116,6 +117,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
                 }//mAudio.abandonAudioFocus(); //반납
             }
         });
+
     }
     @Override
     public void onDestroy(){

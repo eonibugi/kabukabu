@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:text="전체 삭제"
+        android:fontFamily="@font/nanumbarunpenb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.86"
         app:layout_constraintLeft_toLeftOf="parent"

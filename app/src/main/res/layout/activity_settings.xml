@@ -114,6 +114,7 @@
             android:layout_height="37dp"
             android:background="@color/blue2"
             android:text="X0.5"
+            android:fontFamily="@font/nanumbarunpenb"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.385"
@@ -128,6 +129,7 @@
             android:layout_width="58dp"
             android:layout_height="37dp"
             android:background="@color/blue2"
+            android:fontFamily="@font/nanumbarunpenb"
             android:text="X1.0"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -143,6 +145,7 @@
             android:layout_width="58dp"
             android:layout_height="37dp"
             android:background="@color/blue2"
+            android:fontFamily="@font/nanumbarunpenb"
             android:text="X1.5"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -159,6 +162,7 @@
             android:layout_height="37dp"
             android:background="@color/blue2"
             android:text="X2.0"
+            android:fontFamily="@font/nanumbarunpenb"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.954"
@@ -166,7 +170,20 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.85"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 속도 : "
+            android:fontFamily="@font/nanumbarunpenb"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.385"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.906" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,8 @@ import java.util.TimerTask;
 
 
 public class KakaoNotificationListener extends NotificationListenerService {
-    private TextToSpeech tts;
+    private static TextToSpeech tts;
+    private static double spd;
     int checkNumber = 0;
     // String[] stringList1 = new String[100];
     ArrayList<String> stringList = new ArrayList<String>(); // ArrayList 선언
@@ -107,7 +108,7 @@ public class KakaoNotificationListener extends NotificationListenerService {
                     }else{
                         //mAudio.requestAudioFocus(); //요청
                         tts.setPitch((float) 1.0); // 목소리 톤 1.0기본
-                        tts.setSpeechRate((float) 1.0); // 재생속도
+                        tts.setSpeechRate((float) spd); // 재생속도
                         //TTS 앱 개발시에는 messageID 변경 해주고, onDone시에 서비스 Stop, mMap.clear
                         //mMap.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "messageID");
                         tts.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
@@ -118,6 +119,10 @@ public class KakaoNotificationListener extends NotificationListenerService {
             }
         });
 
+    }
+    static void speed(double speed){
+        spd = speed;
+        tts.setSpeechRate((float) speed);
     }
     @Override
     public void onDestroy(){

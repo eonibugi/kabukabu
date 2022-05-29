@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -107,25 +108,16 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != android.speech.tts.TextToSpeech.ERROR) {
-                    // 언어를 선택한다.
-                    tts.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
 
         button01 = (Button) findViewById(R.id.speed_button_0_5);
         button02 = (Button) findViewById(R.id.speed_button_1_0);
         button03 = (Button) findViewById(R.id.speed_button_1_5);
         button04 = (Button) findViewById(R.id.speed_button_2_0);
 
-        button01.setOnClickListener((View.OnClickListener) view -> tts.setSpeechRate(0.5f));
-        button02.setOnClickListener((View.OnClickListener) view -> tts.setSpeechRate(1.0f));
-        button03.setOnClickListener((View.OnClickListener) view -> tts.setSpeechRate(1.5f));
-        button04.setOnClickListener((View.OnClickListener) view -> tts.setSpeechRate(2.0f));
+        button01.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(0.5));
+        button02.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(1.0));
+        button03.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(1.5));
+        button04.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(2.0));
 
     }
 
@@ -152,4 +144,5 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
     }
+
 }

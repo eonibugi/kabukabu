@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이름"
+            android:fontFamily="@font/nanumbarunpenb"
             android:textColor="@android:color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/nanumbarunpenb"
             android:text="내용"
             android:textColor="@android:color/black"
             android:textSize="24sp" />
@@ -45,6 +47,7 @@
             android:layout_width="267dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/nanumbarunpenb"
             android:text="시간" />
 
         <Button
@@ -53,7 +56,8 @@
             android:layout_height="42dp"
             android:layout_gravity="right"
             android:background="@mipmap/bin"
-            android:src="@drawable/bin" />
+            android:src="@drawable/bin"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     </LinearLayout>
 

@@ -26,22 +26,24 @@
 
     <Button
         android:id="@+id/delete_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="72dp"
+        android:layout_height="42dp"
         android:layout_alignParentEnd="true"
-        android:text="전체 삭제"
+        android:background="@color/blue2"
         android:fontFamily="@font/nanumbarunpenb"
+        android:text="전체 삭제"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.013" />
+        app:layout_constraintVertical_bias="0.011" />
 
     <ImageButton
         android:id="@+id/setting_button"
-        android:layout_width="54dp"
-        android:layout_height="64dp"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_baseline_brightness_high_24"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
         Switch = findViewById(R.id.onoffswitch);
         SPF = getSharedPreferences(" ", MODE_PRIVATE);
         final SharedPreferences.Editor editor = SPF.edit();
-        Switch.setChecked(SPF.getBoolean(ex, false));
+        Switch.setChecked(SPF.getBoolean(ex, true));
         ImageButton Timeline_btn = (ImageButton)findViewById(R.id.timeline_button);
         Timeline_btn.setOnClickListener(new View.OnClickListener() {
             @Override

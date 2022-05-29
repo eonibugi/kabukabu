@@ -55,14 +55,15 @@ public class SettingsActivity extends AppCompatActivity {
                 if(isChecked) {
                     pm.setComponentEnabledSetting(
                             notificationListenerService,
-                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+
                             PackageManager.DONT_KILL_APP);
                     editor.putBoolean(ex, true);
                 }
                 else {
                     pm.setComponentEnabledSetting(
                             notificationListenerService,
-                            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                             PackageManager.DONT_KILL_APP);
                     editor.putBoolean(ex, false);
                 }

@@ -23,6 +23,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -108,16 +109,40 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-
+        TextView speedtext = (TextView) findViewById(R.id.textView);
         button01 = (Button) findViewById(R.id.speed_button_0_5);
         button02 = (Button) findViewById(R.id.speed_button_1_0);
         button03 = (Button) findViewById(R.id.speed_button_1_5);
         button04 = (Button) findViewById(R.id.speed_button_2_0);
         // 속도 조절
-        button01.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(0.5));
-        button02.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(1.0));
-        button03.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(1.5));
-        button04.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(2.0));
+        button01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                KakaoNotificationListener.speed(0.5);
+                speedtext.setText("현재 속도 : 0.5");
+            }
+        });
+        button02.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                KakaoNotificationListener.speed(1.0);
+                speedtext.setText("현재 속도 : 1.0");
+            }
+        });
+        button03.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                KakaoNotificationListener.speed(1.5);
+                speedtext.setText("현재 속도 : 1.5");
+            }
+        });
+        button04.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                KakaoNotificationListener.speed(2.0);
+                speedtext.setText("현재 속도 : 2.0");
+            }
+        });
 
     }
 

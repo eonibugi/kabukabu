@@ -120,9 +120,8 @@ public class KakaoNotificationListener extends NotificationListenerService {
         });
 
     }
-    static void speed(double speed){
+    static void speed(double speed){ // setting에서 spd받아오기
         spd = speed;
-        tts.setSpeechRate((float) speed);
     }
     @Override
     public void onDestroy(){

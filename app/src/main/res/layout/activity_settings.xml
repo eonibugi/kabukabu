@@ -176,7 +176,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="현재 속도 : "
+            android:text="현재 속도 : 1.0"
             android:fontFamily="@font/nanumbarunpenb"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.385"

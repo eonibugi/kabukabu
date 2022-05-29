@@ -113,7 +113,7 @@ public class SettingsActivity extends AppCompatActivity {
         button02 = (Button) findViewById(R.id.speed_button_1_0);
         button03 = (Button) findViewById(R.id.speed_button_1_5);
         button04 = (Button) findViewById(R.id.speed_button_2_0);
-
+        // 속도 조절
         button01.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(0.5));
         button02.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(1.0));
         button03.setOnClickListener((View.OnClickListener) view -> KakaoNotificationListener.speed(1.5));

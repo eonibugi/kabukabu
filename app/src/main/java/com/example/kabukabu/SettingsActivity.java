@@ -2,10 +2,13 @@ package com.example.kabukabu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -24,7 +27,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     SeekBar volumeBar;
     Switch Switch;
-
+    SharedPreferences SPF;
+    public static final String ex = "Switch";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         PackageManager pm = getPackageManager();
@@ -32,6 +36,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         Switch = findViewById(R.id.onoffswitch);
+        SPF = getSharedPreferences(" ", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = SPF.edit();
+        Switch.setChecked(SPF.getBoolean(ex, false));
         ImageButton Timeline_btn = (ImageButton)findViewById(R.id.timeline_button);
         Timeline_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,16 +52,21 @@ public class SettingsActivity extends AppCompatActivity {
         Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked)
-                   pm.setComponentEnabledSetting(
-                            notificationListenerService, //off
+                if(isChecked) {
+                    pm.setComponentEnabledSetting(
+                            notificationListenerService,
                             PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                             PackageManager.DONT_KILL_APP);
-                else
+                    editor.putBoolean(ex, true);
+                }
+                else {
                     pm.setComponentEnabledSetting(
                             notificationListenerService,
                             PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                             PackageManager.DONT_KILL_APP);
+                    editor.putBoolean(ex, false);
+                }
+                editor.commit();
             }
         });
 

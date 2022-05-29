@@ -29,7 +29,7 @@
             tools:ignore="MissingConstraints" />
 
         <Switch
-            android:id="@+id/switch2"
+            android:id="@+id/onoffswitch"
             android:layout_width="139dp"
             android:layout_height="62dp"
             android:fontFamily="@font/nanumbarunpenb"

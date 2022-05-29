@@ -3,7 +3,10 @@ package com.example.kabukabu;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -11,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -18,22 +22,39 @@ import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    Switch swichView;
     SeekBar volumeBar;
-
+    Switch Switch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PackageManager pm = getPackageManager();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-
+        Switch = findViewById(R.id.onoffswitch);
         ImageButton Timeline_btn = (ImageButton)findViewById(R.id.timeline_button);
         Timeline_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
+            }
+        });
+        ComponentName notificationListenerService = new ComponentName(this,
+                KakaoNotificationListener.class);
+        Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked)
+                   pm.setComponentEnabledSetting(
+                            notificationListenerService,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP);
+                else
+                    pm.setComponentEnabledSetting(
+                            notificationListenerService,
+                            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                            PackageManager.DONT_KILL_APP);
             }
         });
 

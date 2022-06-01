@@ -15,7 +15,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper{
+public class DatabaseHelper {
     private final String TAG = "DatabaseHelper";
 
 
@@ -26,23 +26,23 @@ public class DatabaseHelper{
     public DatabaseHelper(Context context, String name) {
         mHelper = new MySQLiteOpenHelper(context, name, null, 1);
     }
+
     public static DatabaseHelper open(Context context, String name) {
         return new DatabaseHelper(context, name);
     }
 
-    public Cursor select()
-    {
+    public Cursor select() {
         mDB = mHelper.getReadableDatabase();
         Cursor c = mDB.query("TimeLine2", null, null, null, null, null, null);
         return c;
     }
 
     //데이터넣기
-    public void insertData(String name, String explains, String times){
+    public void insertData(String name, String explains, String times) {
         //트랜잭션 시작을 나타내는 메소드
 
         //try{
-        Log.d(TAG, "Insert Data " );
+        Log.d(TAG, "Insert Data ");
         mDB = mHelper.getWritableDatabase();
 
         ContentValues value = new ContentValues();
@@ -52,28 +52,15 @@ public class DatabaseHelper{
 
         mDB.insert("TimeLine2", null, value);
 
-        /*}catch(Exception e){
-            //SQL문 실행중 오류가 발생하면 예외처리가 되고..
-            //트랜잭션에 정의된 SQL쿼리가 성공되지 않았기때문에 finally블록에서
-            //트랜잭션 종료메서드 실행시(endTransaction()) 롤백이 된다.
-
-            //데이터 삽입 예외 처리
-            e.printStackTrace();
-        }finally{
-            mDB.endTransaction(); //트랜잭션을 끝내는 메소드.
-        }*/
-
     }//end insertData
 
-    public void delete(String id)
-    {
+    public void delete(String id) {
         mDB = mHelper.getWritableDatabase();
         mDB.delete("TimeLine2", "_id=?", new String[]{id});
 
     }
 
-    public void deleteAll()
-    {
+    public void deleteAll() {
         mDB = mHelper.getWritableDatabase();
         mDB.delete("TimeLine2", "", null);
     }

@@ -40,6 +40,7 @@ public class SettingsActivity extends AppCompatActivity {
     SharedPreferences SPF;
     public static final String ex = "Switch";
     public static final String sp = "Speed";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         PackageManager pm = getPackageManager();
@@ -52,11 +53,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         final SharedPreferences.Editor editor = SPF.edit();
         Switch.setChecked(SPF.getBoolean(ex, true));
-        ImageButton Timeline_btn = (ImageButton)findViewById(R.id.timeline_button);
+        ImageButton Timeline_btn = (ImageButton) findViewById(R.id.timeline_button);
         Timeline_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -65,15 +66,14 @@ public class SettingsActivity extends AppCompatActivity {
         Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     pm.setComponentEnabledSetting(
                             notificationListenerService,
                             PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
 
                             PackageManager.DONT_KILL_APP);
                     editor.putBoolean(ex, true);
-                }
-                else {
+                } else {
                     pm.setComponentEnabledSetting(
                             notificationListenerService,
                             PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
@@ -124,7 +124,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 KakaoNotificationListener.speed(0.5);
                 speedtext.setText("현재 속도 : 0.5");
-                editor.putString(sp,"현재 속도 : 0.5");
+                editor.putString(sp, "현재 속도 : 0.5");
                 editor.commit();
             }
         });
@@ -133,7 +133,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 KakaoNotificationListener.speed(1.0);
                 speedtext.setText("현재 속도 : 1.0");
-                editor.putString(sp,"현재 속도 : 1.0");
+                editor.putString(sp, "현재 속도 : 1.0");
                 editor.commit();
             }
         });
@@ -142,7 +142,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 KakaoNotificationListener.speed(1.5);
                 speedtext.setText("현재 속도 : 1.5");
-                editor.putString(sp,"현재 속도 : 1.5");
+                editor.putString(sp, "현재 속도 : 1.5");
                 editor.commit();
             }
         });
@@ -151,7 +151,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 KakaoNotificationListener.speed(2.0);
                 speedtext.setText("현재 속도 : 2.0");
-                editor.putString(sp,"현재 속도 : 2.0");
+                editor.putString(sp, "현재 속도 : 2.0");
                 editor.commit();
             }
         });

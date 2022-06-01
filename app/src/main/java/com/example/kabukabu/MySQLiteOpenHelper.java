@@ -20,7 +20,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        String sql="drop table if exists TimeLine2";
+        String sql = "drop table if exists TimeLine2";
         sqLiteDatabase.execSQL(sql);
         onCreate(sqLiteDatabase);
     }

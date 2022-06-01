@@ -25,8 +25,8 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이름"
             android:fontFamily="@font/nanumbarunpenb"
+            android:text="이름"
             android:textColor="@android:color/black"
             android:textSize="30sp"
             android:textStyle="bold" />

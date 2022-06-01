@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
 
-public class CustomAdapter extends SimpleCursorAdapter implements View.OnClickListener{
+public class CustomAdapter extends SimpleCursorAdapter implements View.OnClickListener {
 
     int position = 0;
     private Context mContext;
@@ -22,8 +22,9 @@ public class CustomAdapter extends SimpleCursorAdapter implements View.OnClickLi
     public interface btnListener {
         boolean onCreateOptionMenu(Menu menu);
 
-        void onListBtnClick(int cursor) ;
+        void onListBtnClick(int cursor);
     }
+
     private btnListener btnListener;
 
     public CustomAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int i, btnListener clickListener) {
@@ -32,13 +33,13 @@ public class CustomAdapter extends SimpleCursorAdapter implements View.OnClickLi
         this.mContext = context;
         this.inflater = LayoutInflater.from(context);
         this.cr = c;
-        this.btnListener = clickListener ;
+        this.btnListener = clickListener;
     }
 
     @Override
     public void onClick(View v) {
         if (this.btnListener != null) {
-            this.btnListener.onListBtnClick((int)v.getTag());
+            this.btnListener.onListBtnClick((int) v.getTag());
         }
     }
 

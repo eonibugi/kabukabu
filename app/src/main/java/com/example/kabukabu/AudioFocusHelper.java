@@ -39,6 +39,7 @@ public class AudioFocusHelper implements AudioManager.OnAudioFocusChangeListener
             audioManager.requestAudioFocus(this, AudioManager.USE_DEFAULT_STREAM_TYPE, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
         }
     }
+
     public void abandonAudioFocus() {
         Log.d(TAG, "AudioFocus >> called abandonAudioFocus()");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

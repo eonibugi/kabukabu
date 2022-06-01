@@ -39,14 +39,17 @@ public class SettingsActivity extends AppCompatActivity {
     private TextToSpeech tts;
     SharedPreferences SPF;
     public static final String ex = "Switch";
+    public static final String sp = "Speed";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         PackageManager pm = getPackageManager();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         Switch = findViewById(R.id.onoffswitch);
         SPF = getSharedPreferences(" ", MODE_PRIVATE);
+
         final SharedPreferences.Editor editor = SPF.edit();
         Switch.setChecked(SPF.getBoolean(ex, true));
         ImageButton Timeline_btn = (ImageButton)findViewById(R.id.timeline_button);
@@ -108,8 +111,9 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
-
-        TextView speedtext = (TextView) findViewById(R.id.textView);
+        TextView speedtext = (TextView) findViewById(R.id.speedtext);
+        String speed = SPF.getString(sp, "현재 속도 : 1.0");
+        speedtext.setText(speed);
         button01 = (Button) findViewById(R.id.speed_button_0_5);
         button02 = (Button) findViewById(R.id.speed_button_1_0);
         button03 = (Button) findViewById(R.id.speed_button_1_5);
@@ -120,6 +124,8 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 KakaoNotificationListener.speed(0.5);
                 speedtext.setText("현재 속도 : 0.5");
+                editor.putString(sp,"현재 속도 : 0.5");
+                editor.commit();
             }
         });
         button02.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +133,8 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 KakaoNotificationListener.speed(1.0);
                 speedtext.setText("현재 속도 : 1.0");
+                editor.putString(sp,"현재 속도 : 1.0");
+                editor.commit();
             }
         });
         button03.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +142,8 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 KakaoNotificationListener.speed(1.5);
                 speedtext.setText("현재 속도 : 1.5");
+                editor.putString(sp,"현재 속도 : 1.5");
+                editor.commit();
             }
         });
         button04.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +151,8 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 KakaoNotificationListener.speed(2.0);
                 speedtext.setText("현재 속도 : 2.0");
+                editor.putString(sp,"현재 속도 : 2.0");
+                editor.commit();
             }
         });
 
